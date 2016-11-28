@@ -3,9 +3,9 @@ import sys
 
 def setup(parameter_set,
           generate=False,
-          duration=6000,
+          duration=240000,  # 4 mins
           dt=0.05,
-          target_directory='noplot/1110',
+          target_directory='noplot/1128',
           include_muscles = True):
 
     exec('from parameters_%s import ParameterisedModel'%parameter_set)
@@ -18,7 +18,8 @@ def setup(parameter_set,
     # Plot some directly stimulated & some not stimulated
     # cells_to_plot      = ["ADAL", "ADAR", "PVDR", "BDUR","I1R","I2L"]
     # cells_to_plot      = ['AVBL','AVBR','PVCL', 'PVCR', 'DB1','DB2','VB1','VB2','DD1','DD2','VD1','VD2']
-    cells_to_plot = ['AVAL', 'RIM', 'ASEL', 'ASER', 'PVCL', 'AVEL']
+    cells_to_plot        = ['AVAL', 'RIM', 'ASEL', 'ASER', 'PVCL', 'AVEL']
+    cells_to_plot        = []
 
     reference = "c302_%s_Full_noplot"%parameter_set
 
