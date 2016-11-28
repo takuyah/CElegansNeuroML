@@ -19,7 +19,6 @@ def setup(parameter_set,
     # cells_to_plot      = ["ADAL", "ADAR", "PVDR", "BDUR","I1R","I2L"]
     # cells_to_plot      = ['AVBL','AVBR','PVCL', 'PVCR', 'DB1','DB2','VB1','VB2','DD1','DD2','VD1','VD2']
     cells_to_plot        = ['AVAL', 'RIM', 'ASEL', 'ASER', 'PVCL', 'AVEL']
-    cells_to_plot        = []
 
     reference = "c302_%s_Full_noplot"%parameter_set
 

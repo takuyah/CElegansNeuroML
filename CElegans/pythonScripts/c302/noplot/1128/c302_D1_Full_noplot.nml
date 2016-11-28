@@ -446,7 +446,8 @@ Parameters and setting used to generate this network:
             </intracellularProperties>
         </biophysicalProperties>
     </cell>
-    <pulseGenerator id="offset_current" delay="0 ms" duration="2000 ms" amplitude="9 pA"/>
+    <rampGenerator id="offset_current_1down" delay="0ms" duration="120000ms" baselineAmplitude="0pA" startAmplitude="5pA" finishAmplitude="0pA"/>
+    <rampGenerator id="offset_current_2up" delay="120000ms" duration="120000ms" baselineAmplitude="0pA" startAmplitude="0pA" finishAmplitude="5pA"/>
     <network id="c302_D1_Full_noplot">
         <population id="ADAL" component="ADAL" type="populationList">
             <property tag="OpenWormBackerAssignedName" value="Xabe"/>
@@ -14234,10 +14235,18 @@ Parameters and setting used to generate this network:
         <continuousProjection id="NC_VD13_MVR23_GABA" presynapticPopulation="VD13" postsynapticPopulation="MVR23">
             <continuousConnectionInstance id="0" preCell="../VD13/0/VD13" preSegment="0" preFractionAlong="0.5" postCell="../MVR23/0/GenericMuscleCell" postSegment="0" postFractionAlong="0.5" preComponent="silent" postComponent="neuron_to_muscle_inh_syn_6conns"/>
         </continuousProjection>
-        <inputList id="Input_ASEL_offset_current" population="ASEL" component="offset_current">
+        <!-- offset_current_1down -->
+        <inputList id="Input_ASEL_offset_current_1down" population="ASEL" component="offset_current_1down">
             <input id="0" target="../ASEL/0/ASEL/0" destination="synapses"/>
         </inputList>
-        <inputList id="Input_ASER_offset_current" population="ASER" component="offset_current">
+        <inputList id="Input_ASER_offset_current_1down" population="ASER" component="offset_current_1down">
+            <input id="0" target="../ASER/0/ASER/0" destination="synapses"/>
+        </inputList>
+        <!-- offset_current_2up -->
+        <inputList id="Input_ASEL_offset_current_2up" population="ASEL" component="offset_current_2up">
+            <input id="0" target="../ASEL/0/ASEL/0" destination="synapses"/>
+        </inputList>
+        <inputList id="Input_ASER_offset_current_2up" population="ASER" component="offset_current_2up">
             <input id="0" target="../ASER/0/ASER/0" destination="synapses"/>
         </inputList>
     </network>
