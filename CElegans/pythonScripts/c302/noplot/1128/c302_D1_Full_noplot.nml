@@ -446,8 +446,8 @@ Parameters and setting used to generate this network:
             </intracellularProperties>
         </biophysicalProperties>
     </cell>
-    <rampGenerator id="offset_current_1down" delay="0ms" duration="120000ms" baselineAmplitude="0pA" startAmplitude="5pA" finishAmplitude="0pA"/>
-    <rampGenerator id="offset_current_2up" delay="120000ms" duration="120000ms" baselineAmplitude="0pA" startAmplitude="0pA" finishAmplitude="5pA"/>
+    <rampGenerator id="offset_current_1down" delay="0ms" duration="60000ms" baselineAmplitude="0pA" startAmplitude="5pA" finishAmplitude="0pA"/>
+    <rampGenerator id="offset_current_2up" delay="60000ms" duration="60000ms" baselineAmplitude="0pA" startAmplitude="0pA" finishAmplitude="5pA"/>
     <network id="c302_D1_Full_noplot">
         <population id="ADAL" component="ADAL" type="populationList">
             <property tag="OpenWormBackerAssignedName" value="Xabe"/>

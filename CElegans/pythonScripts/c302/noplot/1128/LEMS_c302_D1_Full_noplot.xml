@@ -369,7 +369,7 @@ Parameters and setting used to generate this network:
     <!-- End of NeuroML2 content -->
 
 
-    <Simulation id="sim_c302_D1_Full_noplot" length="240000ms" step="0.05ms" target="c302_D1_Full_noplot">
+    <Simulation id="sim_c302_D1_Full_noplot" length="120000ms" step="0.05ms" target="c302_D1_Full_noplot">
 
         <Display id="neurons" title="c302_D1_Full_noplot: Membrane potential of a number of neurons" timeScale="1ms" xmin="-24000.0" xmax="264000.0" ymin="-52" ymax="-28">
 
