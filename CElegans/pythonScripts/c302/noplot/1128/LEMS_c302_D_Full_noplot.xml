@@ -368,7 +368,7 @@ Parameters and setting used to generate this network:
 
 
     <Simulation id="sim_c302_D_Full_noplot" length="120000ms" step="0.05ms" target="c302_D_Full_noplot">
-
+<!--
         <Display id="neurons" title="c302_D_Full_noplot: Membrane potential of a number of neurons" timeScale="1ms" xmin="-24000.0" xmax="264000.0" ymin="-52" ymax="-28">
 
             <Line id="ASEL" quantity="ASEL/0/ASEL/v" scale="1mV" color="#f87100" timeScale="1ms" />
@@ -378,7 +378,7 @@ Parameters and setting used to generate this network:
             <Line id="PVCL" quantity="PVCL/0/PVCL/v" scale="1mV" color="#9a1694" timeScale="1ms" />
 
         </Display>
-
+ -->
         <OutputFile id="neurons_v" fileName="c302_D_Full_noplot.dat">
             <OutputColumn id="ADAL_v" quantity="ADAL/0/ADAL/v"/>
             <OutputColumn id="ADAR_v" quantity="ADAR/0/ADAR/v"/>
