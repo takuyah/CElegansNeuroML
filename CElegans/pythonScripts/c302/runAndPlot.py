@@ -1,10 +1,9 @@
 import sys
 import os
 from pyneuroml import pynml
-import matplotlib.pyplot as plt
-import numpy as np
-import c302
 import c302_utils
+
+from collections import OrderedDict
 
 save_fig_dir = 'summary/'
 
@@ -45,6 +44,12 @@ if __name__ == '__main__':
     elif '-fullB' in sys.argv:
         main('Full','B','',1000,0.05,'jNeuroML_NEURON')
         
+    elif '-fullC0' in sys.argv:
+        main('Full','C0','',1000,0.05,'jNeuroML_NEURON')
+        
+    elif '-fullC' in sys.argv:
+        main('Full','C','',1000,0.05,'jNeuroML_NEURON')
+        
     elif '-fullC1' in sys.argv:
         main('Full','C1','',1000,0.05,'jNeuroML_NEURON')
         
@@ -56,6 +61,9 @@ if __name__ == '__main__':
         
     elif '-musclesB' in sys.argv or  '-muscB' in sys.argv:
         main('Muscles','B','',1000,0.05,'jNeuroML_NEURON')
+        
+    elif '-musclesC0' in sys.argv or  '-muscC0' in sys.argv:
+        main('Muscles','C0','',1000,0.05,'jNeuroML_NEURON')
         
     elif '-musclesC' in sys.argv or  '-muscC' in sys.argv:
         main('Muscles','C','',1000,0.05,'jNeuroML_NEURON')
@@ -87,6 +95,9 @@ if __name__ == '__main__':
     elif '-synsB' in sys.argv:
         main('Syns','B','',500,0.05,'jNeuroML_NEURON')
         
+    elif '-synsC0' in sys.argv:
+        main('Syns','C0','',500,0.05,'jNeuroML_NEURON')
+        
     elif '-synsC' in sys.argv:
         main('Syns','C','',500,0.05,'jNeuroML_NEURON')
         
@@ -105,6 +116,9 @@ if __name__ == '__main__':
     elif '-socialB' in sys.argv:
         main('Social','B','',2500,0.05,'jNeuroML_NEURON')
         
+    elif '-socialC0' in sys.argv:
+        main('Social','C0','',2500,0.05,'jNeuroML_NEURON')
+        
     elif '-socialC' in sys.argv:
         main('Social','C','',2500,0.05,'jNeuroML_NEURON')
         
@@ -116,6 +130,9 @@ if __name__ == '__main__':
         
     elif '-oscB' in sys.argv:
         main('Oscillator','B','',600,0.05,'jNeuroML_NEURON')
+        
+    elif '-oscC0' in sys.argv:
+        main('Oscillator','C0','',1000,0.05,'jNeuroML_NEURON')
         
     elif '-oscC' in sys.argv:
         main('Oscillator','C','',1000,0.05,'jNeuroML_NEURON')
@@ -130,6 +147,8 @@ if __name__ == '__main__':
         main('IClamp','A','',1000,0.05,'jNeuroML')
     elif '-iB' in sys.argv:
         main('IClamp','B','',1000,0.05,'jNeuroML')
+    elif '-iC0' in sys.argv:
+        main('IClamp','C0','',1000,0.05,'jNeuroML')
     elif '-iC' in sys.argv:
         main('IClamp','C','',1000,0.05,'jNeuroML')
     elif '-iC1' in sys.argv:
@@ -143,26 +162,29 @@ if __name__ == '__main__':
         print('Generating all plots')
         html = '<table>\n'
         html2 = '<table>\n'
-        
+        '''
         param_sets = ['IClamp','Syns']
         #param_sets = ['IClamp']
         param_sets = ['IClamp','Syns','Pharyngeal','Social']
         param_sets = ['IClamp','Syns','Pharyngeal','Social','Oscillator','Muscles','Full']
+        param_sets = ['IClamp','Syns','Pharyngeal','Social','Oscillator','Muscles']'''
         #param_sets = ['IClamp','Muscles','Full']
-        levels = ['A','B','C','C1','D','D1']
+        levels = ['A','B','C0','C','C1','D','D1']
         #levels = ['D','D1']
+        #levels = ['C0']
+
         
-        durations = {'IClamp':1000,
-                     'Syns':500,
-                     'Pharyngeal':500,
-                     'Social':2500,
-                     'Oscillator':1000,
-                     'Muscles':1000,
-                     'Full':1000}
+        durations = OrderedDict([('IClamp',1000),
+                                ('Syns',500),
+                                ('Pharyngeal',500),
+                                ('Social',2500),
+                                ('Oscillator',1000),
+                                ('Muscles',1000),
+                                ('Full',1000)])
             
         html+='<tr>'
         html+='<td>&nbsp;</td>'
-        for p in param_sets:
+        for p in durations.keys():
             html+='<td align="center"><b><a href="https://github.com/openworm/CElegansNeuroML/blob/master/CElegans/pythonScripts/c302/c302_%s.py">%s</a></b></td>'%(p,p)
 
         html+='</tr>\n'
@@ -170,7 +192,8 @@ if __name__ == '__main__':
             print('Generating for: %s'%c)
             html+='<tr>'
             html+='<td><b><a href="https://github.com/openworm/CElegansNeuroML/blob/master/CElegans/pythonScripts/c302/parameters_%s.py">Params %s</a></b></td>'%(c,c)
-            for p in param_sets:
+            for p in durations.keys():
+                print('Params: %s'%p)
                 html+='<td>'
                 html+='<a href="summary_%s_%s.html"/>'%(c,p)
                 html+='<img alt="?" src="neurons_%s_%s.png" height="80"/></a>'%(c,p)
