@@ -3,9 +3,9 @@ import sys
 
 def setup(parameter_set,
           generate=False,
-          duration=240000,  # 4 mins
+          duration=60000,  # ms
           dt=0.05,
-          target_directory='noplot/1128',
+          target_directory='noplot/1204',
           include_muscles = True):
 
     exec('from parameters_%s import ParameterisedModel'%parameter_set)
@@ -13,7 +13,7 @@ def setup(parameter_set,
 
     # Some random set of neurons
     # cells_to_stimulate = ["ADAL", "ADAR", "M1","M2L","M3L","M3R","M4","I1R","I2L","I5","I6","MI","NSMR","MCL","ASEL", "AVEL", "AWAR", "DB1", "DVC", "RIAR", "RMDDL"]
-    cells_to_stimulate = ['ASEL', 'ASER']
+    cells_to_stimulate = ['PVCL', 'PVCR']
 
     # Plot some directly stimulated & some not stimulated
     # cells_to_plot      = ["ADAL", "ADAR", "PVDR", "BDUR","I1R","I2L"]
