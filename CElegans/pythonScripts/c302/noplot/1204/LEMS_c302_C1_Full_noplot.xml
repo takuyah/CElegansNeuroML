@@ -69,7 +69,7 @@ Parameters and setting used to generate this network:
     
 
     <Simulation id="sim_c302_C1_Full_noplot" length="60000ms" step="0.05ms" target="c302_C1_Full_noplot">
-
+<!--
         <Display id="neurons" title="c302_C1_Full_noplot: Membrane potential of a number of neurons" timeScale="1ms" xmin="-6000.0" xmax="66000.0" ymin="-52" ymax="-28">
             
             <Line id="ASEL" quantity="ASEL/0/GenericNeuronCell/v" scale="1mV" color="#f87100" timeScale="1ms" />
@@ -288,7 +288,7 @@ Parameters and setting used to generate this network:
             <Line id="MDL23" quantity="MDL23/0/GenericMuscleCell/caConc" scale="1" color="#b42e93" timeScale="1ms" />
             <Line id="MDL24" quantity="MDL24/0/GenericMuscleCell/caConc" scale="1" color="#d24ff0" timeScale="1ms" />
 
-        </Display>
+        </Display>-->
 
         <OutputFile id="neurons_v" fileName="c302_C1_Full_noplot.dat">
             <OutputColumn id="ADAL_v" quantity="ADAL/0/GenericNeuronCell/v"/>
