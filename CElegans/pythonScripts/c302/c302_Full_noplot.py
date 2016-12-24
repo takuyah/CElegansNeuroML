@@ -4,8 +4,8 @@ import sys
 def setup(parameter_set,
           generate=False,
           duration=10000,  # ms
-          dt=0.05,
-          target_directory='noplot/1208_1',
+          dt=0.5,
+          target_directory='noplot/1217',
           include_muscles = True):
 
     exec('from parameters_%s import ParameterisedModel'%parameter_set)
