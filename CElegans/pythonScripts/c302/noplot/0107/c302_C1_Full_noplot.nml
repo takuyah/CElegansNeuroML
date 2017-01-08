@@ -3,14 +3,17 @@
 
 Parameters and setting used to generate this network:
 
-    Cells:                         All cells
-    Cell stimulated:               ['ASEL', 'ASER']
-    Connection numbers overridden: None
-    Connection numbers scaled:     None
-    Include muscles:               True
+    Data reader:                    SpreadsheetDataReader
+    Cells:                          All cells
+    Cell stimulated:                ['ASEL', 'ASER']
+    Connection numbers overridden:  None
+    Connection numbers scaled:      None
+    Connection polarities override: None
+    Include muscles:                True
 
     Known BioParameters:
         BioParameter: cell_diameter = 5 (SRC: BlindGuess, certainty 0.1)
+        BioParameter: muscle_length = 20 (SRC: BlindGuess, certainty 0.1)
         BioParameter: initial_memb_pot = -45 mV (SRC: BlindGuess, certainty 0.1)
         BioParameter: specific_capacitance = 1 uF_per_cm2 (SRC: BlindGuess, certainty 0.1)
         BioParameter: muscle_spike_thresh = -20 mV (SRC: BlindGuess, certainty 0.1)
@@ -124,7 +127,7 @@ Parameters and setting used to generate this network:
         <morphology id="morphology_GenericMuscleCell">
             <segment id="0" name="soma">
                 <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="5"/>
-                <distal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="5"/>
+                <distal x="0.000000e+00" y="2.000000e+01" z="0.000000e+00" diameter="5"/>
             </segment>
         </morphology>
         <biophysicalProperties id="biophys_GenericMuscleCell">
@@ -166,8 +169,7 @@ Parameters and setting used to generate this network:
             </intracellularProperties>
         </biophysicalProperties>
     </cell>
-    <rampGenerator id="offset_current_1down" delay="0ms" duration="60000ms" baselineAmplitude="0pA" startAmplitude="5pA" finishAmplitude="0pA"/>
-    <rampGenerator id="offset_current_2up" delay="60000ms" duration="60000ms" baselineAmplitude="0pA" startAmplitude="0pA" finishAmplitude="5pA"/>
+    <rampGenerator id="offset_current_down" delay="0ms" duration="10000ms" baselineAmplitude="0pA" startAmplitude="5pA" finishAmplitude="0pA"/>
     <network id="c302_C1_Full_noplot">
         <population id="ADAL" component="GenericNeuronCell" type="populationList">
             <property tag="OpenWormBackerAssignedName" value="Xabe"/>
@@ -13955,20 +13957,11 @@ Parameters and setting used to generate this network:
         <continuousProjection id="NC_VD13_MVR23_GABA" presynapticPopulation="VD13" postsynapticPopulation="MVR23">
             <continuousConnectionInstance id="0" preCell="../VD13/0/GenericNeuronCell" preSegment="0" preFractionAlong="0.5" postCell="../MVR23/0/GenericMuscleCell" postSegment="0" postFractionAlong="0.5" preComponent="silent" postComponent="neuron_to_muscle_inh_syn_6conns"/>
         </continuousProjection>
-         <!-- offset_current_1down -->
-        <inputList id="Input_ASEL_offset_current_1down" population="ASEL" component="offset_current_1down">
+        <inputList id="Input_ASEL_offset_current" population="ASEL" component="offset_current_down">
             <input id="0" target="../ASEL/0/GenericNeuronCell" destination="synapses"/>
         </inputList>
-        <inputList id="Input_ASER_offset_current_1down" population="ASER" component="offset_current_1down">
-            <input id="0" target="../ASER/0/GenericNeuronCell" destination="synapses"/>
-        </inputList>
-        <!-- offset_current_2up -->
-        <inputList id="Input_ASEL_offset_current_2up" population="ASEL" component="offset_current_2up">
-            <input id="0" target="../ASEL/0/GenericNeuronCell" destination="synapses"/>
-        </inputList>
-        <inputList id="Input_ASER_offset_current_2up" population="ASER" component="offset_current_2up">
+        <inputList id="Input_ASER_offset_current" population="ASER" component="offset_current_down">
             <input id="0" target="../ASER/0/GenericNeuronCell" destination="synapses"/>
         </inputList>
     </network>
 </neuroml>
-

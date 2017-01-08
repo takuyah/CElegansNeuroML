@@ -24,18 +24,18 @@ class BioParameter():
         self.name = name
         self.value = value
         self.source = source
-        self.certainty = certainty 
-    
+        self.certainty = certainty
+
     def __str__(self):
         return "BioParameter: %s = %s (SRC: %s, certainty %s)"%(self.name, self.value, self.source, self.certainty)
-    
+
     def change_magnitude(self, magnitude):
-        
+
         self.value = '%f %s'%(magnitude, split_neuroml_quantity(self.value)[1])
 
 
 class ParameterisedModelPrototype(object):
-    
+
     bioparameters = []
 
     def add_bioparameter(self, name, value, source, certainty):
@@ -69,8 +69,8 @@ class ParameterisedModelPrototype(object):
         for bp in self.bioparameters:
             info += indent+indent+"%s\n"%bp
         return info
-    
-    
+
+
 class c302ModelPrototype(ParameterisedModelPrototype):
 
     level = "Level not yet set"
@@ -81,15 +81,15 @@ class c302ModelPrototype(ParameterisedModelPrototype):
     elec_syn = None
     offset_current = None
     concentration_model = None
-    
+
     def is_level_A(self):
         return self.level.startswith('A')
-    
+
     def is_level_B(self):
         return self.level.startswith('B')
-    
+
     def is_level_C(self):
         return self.level.startswith('C')
-    
+
     def is_level_D(self):
         return self.level.startswith('D')
