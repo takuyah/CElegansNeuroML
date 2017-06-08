@@ -6,8 +6,10 @@ def setup(parameter_set,
           duration=1080, #Match time run in Figure 1C of Kato et. al, Cell 2015 http://dx.doi.org/10.1016/j.cell.2015.09.034
           dt=0.1,
           target_directory='examples',
-          include_muscles = True,
-          data_reader="SpreadsheetDataReader"):
+          muscles_to_include = None,
+          data_reader="SpreadsheetDataReader",
+          param_overrides={},
+          verbose=True):
 
     exec('from parameters_%s import ParameterisedModel'%parameter_set)
     params = ParameterisedModel()
@@ -28,15 +30,16 @@ def setup(parameter_set,
              params,
              cells_to_plot=cells_to_plot,
              cells_to_stimulate=cells_to_stimulate,
-             include_muscles = include_muscles,
+             muscles_to_include = muscles_to_include,
              duration=duration,
              dt=dt,
              vmin=-72 if parameter_set=='A' else -52,
              vmax=-48 if parameter_set=='A' else -28,
-             validate=(parameter_set!='B'),
-             target_directory=target_directory)
+             target_directory=target_directory,
+             param_overrides=param_overrides,
+             verbose=verbose)
 
-    return cell_names, cells_to_stimulate, params, include_muscles
+    return cell_names, cells_to_stimulate, params, muscles_to_include
 
 
 if __name__ == '__main__':

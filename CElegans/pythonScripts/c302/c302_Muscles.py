@@ -6,6 +6,7 @@ def setup(parameter_set,
           duration=1000,
           dt=0.05,
           target_directory='examples',
+<<<<<<< HEAD
           data_reader="SpreadsheetDataReader"):
 
     exec('from parameters_%s import ParameterisedModel'%parameter_set)
@@ -23,6 +24,27 @@ def setup(parameter_set,
 
     #params.add_bioparameter("elec_syn_gbase", "0.001 nS", "BlindGuess", "0.1")
 
+=======
+          data_reader="SpreadsheetDataReader",
+          param_overrides={},
+          verbose=True):
+    
+    exec('from parameters_%s import ParameterisedModel'%parameter_set)
+    params = ParameterisedModel()
+    
+    params.set_bioparameter("unphysiological_offset_current", "4pA", "Testing IClamp", "0")
+    params.set_bioparameter("unphysiological_offset_current_del", "5 ms", "Testing IClamp", "0")
+    params.set_bioparameter("unphysiological_offset_current_dur", "10000 ms", "Testing IClamp", "0")
+    
+    #params.set_bioparameter("exc_syn_conductance", ".20 nS", "BlindGuess", "0.1")  
+    params.set_bioparameter("chem_exc_syn_decay", "5 ms", "BlindGuess", "0.1")
+    
+    #params.set_bioparameter("inh_syn_conductance", ".35 nS", "BlindGuess", "0.1")
+    params.set_bioparameter("chem_inh_syn_decay", "200 ms", "BlindGuess", "0.1")
+    
+    #params.set_bioparameter("elec_syn_gbase", "0.001 nS", "BlindGuess", "0.1")
+    
+>>>>>>> 220348b7a5b8f1f9410b771c56dafb0cd7d62a1c
     # Any neurons connected to muscles
 
     cells = ['AS1', 'AS10', 'AS11', 'AS2', 'AS3', 'AS4', 'AS5', 'AS6', 'AS7', 'AS8', 'AS9',
@@ -62,19 +84,31 @@ def setup(parameter_set,
     cells_to_stimulate = ['PVCL', 'AVBL']
     cells_to_stimulate.extend(['DB1', 'VB1'])
     cells_to_stimulate = ['PVCL','PVCR']
+<<<<<<< HEAD
 
+=======
+    cells_to_stimulate = ['PLML','PLMR']
+    
+>>>>>>> 220348b7a5b8f1f9410b771c56dafb0cd7d62a1c
     # Plot some directly stimulated & some not stimulated
     cells_to_plot      = ['AS1', 'AS10', 'AVFL', 'DA1','DB1','DB4','DB7','IL1DL','RID', 'RIML','SMBDL', 'SMBDR', 'VB1', 'VB5', 'VB10','VC1', 'VC2']
     cells_to_plot      = ['AVBL','AVBR','PVCL', 'PVCR', 'DB1','DB2','VB1','VB2','DD1','DD2','VD1','VD2']
 
     reference = "c302_%s_Muscles"%parameter_set
+<<<<<<< HEAD
 
     include_muscles = True
 
+=======
+    
+    muscles_to_include = None
+    
+>>>>>>> 220348b7a5b8f1f9410b771c56dafb0cd7d62a1c
     if generate:
         c302.generate(reference,
                     params,
                     cells=cells,
+<<<<<<< HEAD
                     cells_to_plot=cells_to_plot,
                     cells_to_stimulate=cells_to_stimulate,
                     include_muscles = include_muscles,
@@ -85,6 +119,19 @@ def setup(parameter_set,
 
     return cells, cells_to_stimulate, params, include_muscles
 
+=======
+                    cells_to_plot=cells_to_plot, 
+                    cells_to_stimulate=cells_to_stimulate, 
+                    muscles_to_include = muscles_to_include,
+                    duration=duration, 
+                    dt=dt, 
+                    target_directory=target_directory,
+                    param_overrides=param_overrides,
+                    verbose=verbose)    
+
+    return cells, cells_to_stimulate, params, muscles_to_include
+             
+>>>>>>> 220348b7a5b8f1f9410b771c56dafb0cd7d62a1c
 if __name__ == '__main__':
 
     parameter_set = sys.argv[1] if len(sys.argv)==2 else 'A'

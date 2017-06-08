@@ -169,7 +169,7 @@ Parameters and setting used to generate this network:
             </intracellularProperties>
         </biophysicalProperties>
     </cell>
-    <pulseGenerator id="offset_current" delay="0 ms" duration="2000 ms" amplitude="5.135697186048022 pA"/>
+    <pulseGenerator id="offset_current" delay="0 ms" duration="10000 ms" amplitude="5.135697186048022 pA"/>
     <network id="c302_C1_Full_noplot">
         <population id="ADAL" component="GenericNeuronCell" type="populationList">
             <property tag="OpenWormBackerAssignedName" value="Xabe"/>

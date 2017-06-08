@@ -27,7 +27,6 @@ def setup(parameter_set,
                  cells_to_stimulate=cells_to_stimulate, 
                  duration=800, 
                  dt=0.1, 
-                 validate=(parameter_set!='B'),
                  target_directory = target_directory)
                  
         stim_amplitude = "0.6nA"
@@ -40,7 +39,7 @@ def setup(parameter_set,
 
         print("(Re)written network file to: "+nml_file)
              
-    return cells, cells_to_stimulate, params, False
+    return cells, cells_to_stimulate, params, []
              
 if __name__ == '__main__':
     

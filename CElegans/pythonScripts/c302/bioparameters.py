@@ -32,6 +32,10 @@ class BioParameter():
     def change_magnitude(self, magnitude):
 
         self.value = '%f %s'%(magnitude, split_neuroml_quantity(self.value)[1])
+        
+    def x(self):
+        
+        return split_neuroml_quantity(self.value)[0]
 
 
 class ParameterisedModelPrototype(object):
@@ -75,7 +79,8 @@ class c302ModelPrototype(ParameterisedModelPrototype):
 
     level = "Level not yet set"
     custom_component_types_definitions = None
-    generic_cell = None
+    generic_neuron_cell = None
+    generic_muscle_cell = None
     exc_syn = None
     inh_syn = None
     elec_syn = None
@@ -90,6 +95,13 @@ class c302ModelPrototype(ParameterisedModelPrototype):
 
     def is_level_C(self):
         return self.level.startswith('C')
+<<<<<<< HEAD
 
+=======
+    
+    def is_level_C0(self):
+        return self.level == 'C0'
+    
+>>>>>>> 220348b7a5b8f1f9410b771c56dafb0cd7d62a1c
     def is_level_D(self):
         return self.level.startswith('D')

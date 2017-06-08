@@ -6,23 +6,25 @@ def setup(parameter_set,
           duration=1000, 
           dt=0.05,
           target_directory='examples',
-          data_reader="SpreadsheetDataReader"):
+          data_reader="SpreadsheetDataReader",
+          param_overrides={},
+          verbose=True):
     
     exec('from parameters_%s import ParameterisedModel'%parameter_set)
     params = ParameterisedModel()
     
-    #params.set_bioparameter("unphysiological_offset_current", "5pA", "Testing IClamp", "0")
-    params.set_bioparameter("unphysiological_offset_current_del", "5 ms", "Testing IClamp", "0")
-    params.set_bioparameter("unphysiological_offset_current_dur", "1000 ms", "Testing IClamp", "0")
+    params.set_bioparameter("unphysiological_offset_current", "2pA", "Testing Osc", "0")
+    params.set_bioparameter("unphysiological_offset_current_del", "10 ms", "Testing Osc", "0")
+    params.set_bioparameter("unphysiological_offset_current_dur", "2500 ms", "Testing Osc", "0")
     
-    #params.add_bioparameter("chem_exc_syn_gbase", ".02 nS", "BlindGuess", "0.1")
-    params.add_bioparameter("chem_exc_syn_decay", "5 ms", "BlindGuess", "0.1")
+    #params.set_bioparameter("chem_exc_syn_gbase", ".02 nS", "BlindGuess", "0.1")
+    params.set_bioparameter("chem_exc_syn_decay", "5 ms", "BlindGuess", "0.1")
     
-    #params.add_bioparameter("chem_inh_syn_gbase", ".02 nS", "BlindGuess", "0.1")
-    params.add_bioparameter("chem_inh_syn_decay", "30 ms", "BlindGuess", "0.1")
-    params.add_bioparameter("inh_syn_erev", "-90 mV", "BlindGuess", "0.1")
+    #params.set_bioparameter("chem_inh_syn_gbase", ".02 nS", "BlindGuess", "0.1")
+    params.set_bioparameter("chem_inh_syn_decay", "30 ms", "BlindGuess", "0.1")
+    params.set_bioparameter("inh_syn_erev", "-90 mV", "BlindGuess", "0.1")
     
-    #params.add_bioparameter("elec_syn_gbase", "0.001 nS", "BlindGuess", "0.1")
+    #params.set_bioparameter("elec_syn_gbase", "0.001 nS", "BlindGuess", "0.1")
     
     # Any neurons connected to muscles
     
@@ -33,16 +35,19 @@ def setup(parameter_set,
     
     cells = ['DB3', 'VB3', 'DD3', 'VD3', 'DB4', 'VB4', 'DD4', 'VD4']
     cells = ['DB2', 'VB2', 'DD2', 'VD2', 'DB3', 'VB3', 'DD3', 'VD3']
+    cells += ['DA2', 'VA2','DA3','VA3']
     #cells = ['DB3', 'VB3', 'DB4', 'VB4']
              
     #cells+=['AVBL','PVCL','AVBR','PVCR']
     #cells+=[]
-    cells+=['PVCL', 'PVCR','AVBL','AVBR']
+    #cells+=['PVCL', 'PVCR','AVBL','AVBR']
+    cells+=['PLML', 'PLMR','AVAL','AVAR']
     #cells+=['AVBL','AVBR']
     #cells=None  # implies all cells...     
     
     
-    cells_to_stimulate = ['PVCL','PVCR']
+    #cells_to_stimulate = ['PVCL','PVCR']
+    cells_to_stimulate = ['PLML','PLMR']
     #cells_to_stimulate = ['AVBL','AVBR']
     #cells_to_stimulate = ['AVBL']
     
@@ -52,8 +57,7 @@ def setup(parameter_set,
     
     reference = "c302_%s_Oscillator"%parameter_set
     
-    include_muscles = True
-    include_muscles = False
+    muscles_to_include = []
     
     if generate:
         c302.generate(reference, 
@@ -61,13 +65,14 @@ def setup(parameter_set,
                     cells=cells,
                     cells_to_plot=cells_to_plot, 
                     cells_to_stimulate=cells_to_stimulate, 
-                    include_muscles = include_muscles,
+                    muscles_to_include = muscles_to_include,
                     duration=duration, 
                     dt=dt, 
-                    validate=(parameter_set!='B'),
-                    target_directory=target_directory)  
+                    target_directory=target_directory,
+                    param_overrides=param_overrides,
+                    verbose=verbose)  
 
-    return cells, cells_to_stimulate, params, include_muscles
+    return cells, cells_to_stimulate, params, muscles_to_include
              
 if __name__ == '__main__':
     
